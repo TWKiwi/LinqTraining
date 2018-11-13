@@ -149,5 +149,17 @@ namespace LinqSample.WithoutLinq
         {
             return YourTakeWhile(sources, 1, func);
         }
+
+        public static IEnumerable<T> YourLast<T>(IEnumerable<T> sources, Func<T, bool> func)
+        {
+            var yourWhere = YourWhere(sources, func);
+            var enumerator = yourWhere.GetEnumerator();
+            var index = 0;
+            while (enumerator.MoveNext())
+            {
+                index++;
+            }
+            return YourSkipWhile(yourWhere, index - 1, func);
+        }
     }
 }
