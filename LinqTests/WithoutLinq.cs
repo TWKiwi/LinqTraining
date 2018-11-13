@@ -144,5 +144,10 @@ namespace LinqSample.WithoutLinq
 
             yield return temp;
         }
+
+        public static IEnumerable<T> YourFirst<T>(IEnumerable<T> sources, Func<T, bool> func)
+        {
+            return YourTakeWhile(sources, 1, func);
+        }
     }
 }

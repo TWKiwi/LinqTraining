@@ -163,5 +163,24 @@ namespace LinqTests
 
             expected.ToExpectedObject().ShouldEqual(actual.ToList());
         }
+
+        [TestMethod]
+        public void First()
+        {
+            var employees = RepositoryFactory.GetEmployees();
+            var actual = WithoutLinq.YourFirst(employees, e => e.Age > 30).ToList().First();
+
+            var expected = new Employee
+            {
+                Name = "Joe",
+                Role = RoleType.Engineer,
+                MonthSalary = 100,
+                Age = 44,
+                WorkingYear = 2.6
+            };
+
+
+            expected.ToExpectedObject().ShouldEqual(actual);
+        }
     }
 }
